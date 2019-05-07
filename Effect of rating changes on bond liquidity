@@ -1,0 +1,866 @@
+library(readxl)
+IGBonds_incl_ticker <- read_excel("~/Documents/UZH/Seminar on Market Microstructure/IGBonds_incl_ticker.xlsx",
+col_types = c("text", "date", "numeric",
+"numeric", "text"))
+View(IGBonds_incl_ticker)
+library(readxl)
+Ratingdowngrades <- read_excel("~/Documents/UZH/Seminar on Market Microstructure/Ratingdowngrades.xlsx")
+View(Ratingdowngrades)
+Ratings <- mutate(Ratingdowngrades, Date= as.Date(Date, format= "%d.%m.%Y"))
+Bonds <- mutate(IGBonds_incl_ticker, Date= as.Date(Date, format= "%d.%m.%Y"))
+library(readxl)
+Ratingdowngrades <- read_excel("~/Documents/UZH/Seminar on Market Microstructure/Ratingdowngrades.xlsx")
+View(Ratingdowngrades)
+Ratings <- mutate(Ratingdowngrades, Date= as.Date(Date, format= "%d.%m.%Y"))
+library(readxl)
+MappingRating <- read_excel("~/Documents/UZH/Seminar on Market Microstructure/MappingRating.xlsx")
+View(MappingRating)
+View(Ratings)
+View(Ratings)
+View(Ratingdowngrades)
+Ratings <- mutate(Ratingdowngrades, Date= as.Date(Date, format= "%d.%m.%Y"))
+View(Ratings)
+View(Bonds)
+library(readxl)
+Ratingdowngrades <- read_excel("~/Documents/UZH/Seminar on Market Microstructure/Ratingdowngrades.xlsx")
+View(Ratingdowngrades)
+Ratings <- mutate(Ratingdowngrades, Date= as.Date(Date, format= "%d.%m.%Y"))
+View(IGBonds_incl_ticker)
+library(readxl)
+Ratingdowngrades <- read_excel("~/Documents/UZH/Seminar on Market Microstructure/Ratingdowngrades.xlsx",
+col_types = c("text", "date", "text",
+"text", "text", "text"))
+View(Ratingdowngrades)
+Ratings <- Ratingdowngrades
+Ratings <- mutate(Ratingdowngrades, Date= as.Date(Date, format= "%d.%m.%Y"))
+View(Ratings)
+Ratingsstndrd <- left_join(Ratings, MappingRating, by="Rating_new")
+View(Ratingsstndrd)
+Ratingsstndrd <- rename(Ratingsstndrd, Identifier_new = Identifier)
+Ratingsstndrd <- select(Ratingsstndrd, Ticker, Date, Agency, Rating_new, Identifier_new, Rating_old.x, Ctry)
+Ratingsstndrd <- rename(Ratingsstndrd, Rating_old = Rating_old.x)
+Ratingsstndrd <- left_join(Ratingsstndrd, MappingRating, by="Rating_old")
+Ratingsstndrd <- rename(Ratingsstndrd, Identifier_old = Identifier)
+Ratingsstndrd <- select(Ratingsstndrd, Ticker, Date, Agency, Rating_new.x, Identifier_new, Rating_old, Identifier_old, Ctry)
+Ratingsstndrd <- rename(Ratingsstndrd, Rating_new = Rating_new.x)
+Bonds <- mutate(Bonds, Spread = PX_ASK - PX_BID)
+Bondswithdowngrades <- left_join(Bonds, Ratingsstndrd, by="Ticker")
+View(Bondswithdowngrades)
+Bondswithdowngrades <- left_join(Bonds, Ratingsstndrd, by=c("Ticker","Date")
+)
+Bondswithdowngrades <- distinct(Bondswithdowngrades)
+View(Bondswithdowngrades)
+Downgradedays <- Bondswithdowngrades %>% select(ISIN, Date) %>% filter(!is.na(Rating_new))
+Downgradedays <- Bondswithdowngrades %>% select(ISIN, Date) %>% filter(!is.na("Rating_new"))
+View(Downgradedays)
+Downgradedays <- Bondswithdowngrades %>% select(ISIN, Date) %>% filter(!is.na(Rating_new))
+Downgradedays <- Bondswithdowngrades %>% drop_na(Rating_new)
+View(Ratingsstndrd)
+Ratingdowngrades
+Ratingsstndrd <- distinct(Ratingsstndrd)
+Bondswithdowngrades <- left_join(Bonds, Ratingsstndrd, by=c("Ticker","Date"))
+Downgradedays <- Bondswithdowngrades %>% drop_na(Rating_new)
+write_csv(Downgradedays, file="Downgradedays.csv")
+View(Downgradedays)
+View(Downgradedays)
+write_csv(Downgradedays, file = "downgradedays.csv")
+write_csv2(Downgradedays, file = "downgradedays.csv")
+write.table(Downgradedays, file = "downgradedays.csv")
+library(readxl)
+Mappingperiod <- read_excel("~/Documents/UZH/Seminar on Market Microstructure/Mappingperiod.xlsx",
+col_types = c("date", "numeric"))
+View(Mappingperiod)
+Bondswithdowngrades <- left_join(Bondswithdowngrades, Mappingperiod, by="Date")
+Mappingperiod <- mutate(Mappingperiod, Date= as.Date(Date, format= "%d.%m.%Y")))
+Mappingperiod <- mutate(Mappingperiod, Date= as.Date(Date, format= "%d.%m.%Y"))
+Bondswithdowngrades <- left_join(Bondswithdowngrades, Mappingperiod, by="Date")
+View(Bondswithdowngrades)
+Downgradedays <- Bondswithdowngrades %>% drop_na(Rating_new)
+Downgradedays$Date +30
+Downgradedays-30 <- mutate(Downgradedays, Date - 30)
+Downgradedays1.1 <- mutate(Downgradedays, Date - 30)
+View(Downgradedays1.1)
+install.packages("lubridate")
+install.packages("lubridate")
+library(lubridate)
+Downgradedays1.1 <- mutate(Downgradedays, Downgradedays$Date - days(30))
+library(tidyverse)
+Downgradedays1.1 <- mutate(Downgradedays, Downgradedays$Date - days(30))
+View(Downgradedays1.1)
+View(Downgradedays)
+Downgradedays1.1 <- mutate(Downgradedays, Date = Date - days(30))
+View(Downgradedays1.1)
+Downgradedays1.2 <- mutate(Downgradedays, Date = Date - days(1))
+Downgradedays2.1 <- mutate(Downgradedays, Date = Date - days(1))
+Downgradedays2.2 <- mutate(Downgradedays, Date = Date + days(1))
+Downgradedays3.1 <- mutate(Downgradedays, Date = Date + days(1))
+Downgradedays3.2 <- mutate(Downgradedays, Date = Date + days(30))
+Downgradedays4.1 <- mutate(Downgradedays, Date = Date + days(1))
+Downgradedays4.2 <- mutate(Downgradedays, Date = Date + days(90))
+Period1 <- Bondswithdowngrades %>% filter((between(Date, Downgradedays1.1$Date, Downgradedays1.2$Date)) & ISIN == Downgradedays1.1$ISIN)
+Period1 <- filter(Bondswithdowngrades(between(Bondswithdowngrades$Date, Downgradedays1.1$Date, Downgradedays1.2$Date)) & ISIN == Downgradedays1.1$ISIN)
+Period1 <- filter((between(Bondswithdowngrades$Date, Downgradedays1.1$Date, Downgradedays1.2$Date)) & ISIN == Downgradedays1.1$ISIN)
+Period1 <- Bondswithdowngrades %>% filter((between(Date, Downgradedays1.1$Date, Downgradedays1.2$Date)) & ISIN == Downgradedays1.1$ISIN)
+head(select(Bondswithdowngrades, c(ISIN, Date, Spread)))
+head(select(Bondswithdowngrades, c(ISIN, Date, Spread, Rating_new)))
+View(Downgradedays)
+head(select(Downgradedays, c(ISIN, Date, Spread, Rating_new)))
+Spreadchange1 <- Downgradedays1.1$Spread - Downgradedays1.2$Spread
+print(Spreadchange1)
+Spreadchange1 <- (Downgradedays1.1$Spread - Downgradedays1.2$Spread)*100
+print(Spreadchange1)
+View(Downgradedays1.2)
+Spreadchange1 <- Bondswithdowngrades %>% filter(Date == Downgradedays1.1$Date)
+Spreadchange1 <- filter(Bondswithdowngrades, Bondswithdowngrades$Date == Downgradedays1.1$Date)
+Spreadchange1 <- filter(Bondswithdowngrades, Bondswithdowngrades$Date %in% Downgradedays1.1$Date, Bondswithdowngrades$ISIN %in% Downgradedays1.1$ISIN)
+View(Spreadchange1)
+Spreadchange1 <- Bondswithdowngrades %>% filter(Bondswithdowngrades$Date %in% Downgradedays1.1$Date & Bondswithdowngrades$ISIN %in% Downgradedays1.1$ISIN)
+View(Spreadchange1)
+Spreadchange1 <- Bondswithdowngrades %>% filter(Downgradedays1.1$Date in Bondswithdowngrades$Date & Downgradedays1.1$ISIN %in% Bondswithdowngrades$ISIN)
+Spreadchange1 <- Bondswithdowngrades %>% filter(Downgradedays1.1$Date %in% Bondswithdowngrades$Date & Downgradedays1.1$ISIN %in% Bondswithdowngrades$ISIN)
+View(Downgradedays)
+Spreadchange1 <- left_join(Bondswithdowngrades, Downgradedays1.1, by=("Date","ISIN"))
+Spreadchange1 <- left_join(Bondswithdowngrades, Downgradedays1.1, by = c("Date","ISIN"))
+View(Spreadchange1)
+Spreadchange1 <- semi_join(Bondswithdowngrades, Downgradedays1.1, by = c("Date","ISIN"))
+View(Spreadchange1)
+View(Downgradedays1.1)
+Spreadchange1 <- inner_join(Bondswithdowngrades, Downgradedays1.1, by = c("Date","ISIN"))
+View(Spreadchange1)
+View(Downgradedays1.1)
+Downgradedays1.1 <- distinct(Downgradedays1.1)
+test <- inner_join(Bondswithdowngrades, Downgradedays, by = c("Date","ISIN"))
+test <- semi_join(Bondswithdowngrades, Downgradedays, by = c("Date","ISIN"))
+Spreadchange1 <- semi_join(Bondswithdowngrades, Downgradedays1.1, by = c("Date","ISIN"))
+View(Spreadchange1)
+Spreadchange2 <- semi_join(Bondswithdowngrades, Downgradedays1.2, by = c("Date","ISIN"))
+Spreadchange1 <- left_join(Bondswithdowngrades, Downgradedays1.1, by = c("Date","ISIN"))
+Spreadchange2 <- left_join(Bondswithdowngrades, Downgradedays1.2, by = c("Date","ISIN"))
+Spreadchange2 <- inner_join(Bondswithdowngrades, Downgradedays1.2, by = c("Date","ISIN"))
+Spreadchange1 <- inner_join(Bondswithdowngrades, Downgradedays1.1, by = c("Date","ISIN"))
+Aggrbonds <- Bondswithdowngrades <- group_by(c("Ticker","Date"))
+Aggrbonds <- Bondswithdowngrades <- group_by(c(Ticker,Date))
+Aggrbonds <- Bondswithdowngrades %>% group_by(c("Ticker","Date"))
+Aggrbonds <- Bondswithdowngrades %>% group_by("Ticker" & "Date")
+Aggrbonds <- Bondswithdowngrades %>% group_by(Ticker, Date)
+Aggrbonds <- Bondswithdowngrades %>% group_by(Ticker, Date) %>%
+summarise(mean_PX_ASK = mean(PX_ASK, na.rm = TRUE),
+sdmean_temp = sd(temp, na.rm = TRUE))
+Aggrbonds <- Bondswithdowngrades %>% group_by(Ticker, Date) %>%
+summarise(mean_PX_ASK = mean(PX_ASK, na.rm = TRUE),
+mean_PX_BID = mean(PX_BID, na.rm = TRUE))
+View(Aggrbonds)
+View(Ratingsstndrd)
+left_join(Aggrbonds, Ratingsstndrd, by = c("Ticker", "Date"))
+CumBonds <- left_join(Aggrbonds, Ratingsstndrd, by = c("Ticker", "Date"))
+View(CumBonds)
+CumBonds <- left_join(CumBonds, Mappingperiod, by="Date")
+Downgradedays <- CumBonds %>% drop_na(Rating_new)
+View(Downgradedays)
+Downgradedays1.1 <- mutate(Downgradedays, Date = Date - days(30))
+Downgradedays1.2 <- mutate(Downgradedays, Date = Date - days(1))
+Downgradedays2.1 <- mutate(Downgradedays, Date = Date - days(1))
+Downgradedays2.2 <- mutate(Downgradedays, Date = Date + days(1))
+Downgradedays3.1 <- mutate(Downgradedays, Date = Date + days(1))
+Downgradedays3.2 <- mutate(Downgradedays, Date = Date + days(30)
+)
+Downgradedays4.1 <- mutate(Downgradedays, Date = Date + days(1))
+Downgradedays4.2 <- mutate(Downgradedays, Date = Date + days(90))
+CumBonds <- CumBonds %>% mutate(Spread = mean_PX_ASK - mean_PX_BID)
+View(CumBonds)
+Spreadchange1 <- semi_join(CumBonds, Downgradedays1.1, by = c("Date","ISIN"))
+Spreadchange1 <- semi_join(CumBonds, Downgradedays1.1, by = c("Date","Ticker"))
+View(Spreadchange1)
+Spreadchange2 <- semi_join(CumBonds, Downgradedays1.2, by = c("Date","Ticker"))
+View(Spreadchange1)
+View(Spreadchange2)
+aggspread1 <- left_join(Spreadchange1, Spreadchange2, by = c("Date","Ticker"))
+View(aggspread1)
+View(aggspread1)
+Spreadchange1 <- CumBonds %>% filter(Date == Downgradedays1.1$Date, Ticker == Downgradedays1.1$Ticker)
+Spreadchange1 <- CumBonds %>% filter(Date %in% Downgradedays1.1$Date, Ticker %in% Downgradedays1.1$Ticker)
+View(Spreadchange1)
+View(CumBonds)
+Spreadchange2 <- CumBonds %>% filter(Date %in% Downgradedays1.2$Date, Ticker %in% Downgradedays1.2$Ticker)
+View(Downgradedays)
+Downgradedays <- mutate(Downgradedays, Identfier_Rating = rownames(Downgradedays))
+Downgradedays <-  tibble::rowid_to_column(Downgradedays, "ID")
+View(Downgradedays)
+Downgradedays1.1 <- mutate(Downgradedays, Date = Date - days(30))
+Downgradedays1.2 <- mutate(Downgradedays, Date = Date - days(1))
+Downgradedays2.1 <- mutate(Downgradedays, Date = Date - days(1))
+Downgradedays2.2 <- mutate(Downgradedays, Date = Date + days(1))
+Downgradedays3.1 <- mutate(Downgradedays, Date = Date + days(1))
+Downgradedays3.2 <- mutate(Downgradedays, Date = Date + days(30))
+Downgradedays4.1 <- mutate(Downgradedays, Date = Date + days(1))
+Downgradedays4.2 <- mutate(Downgradedays, Date = Date + days(90))
+View(Downgradedays1.1)
+Spreadchange1 <- CumBonds %>% filter(Date %in% Downgradedays1.1$Date, Ticker %in% Downgradedays1.1$Ticker)
+Spreadchange2 <- CumBonds %>% filter(Date %in% Downgradedays1.2$Date, Ticker %in% Downgradedays1.2$Ticker)
+View(Spreadchange1)
+View(Spreadchange2)
+View(Downgradedays)
+Cubonds <- lleft_join(CumBonds, Downgradedays, by = c("Ticker","Date","Agency","Rating_new","Rating_old"))
+Cubonds <- left_join(CumBonds, Downgradedays, by = c("Ticker","Date","Agency","Rating_new","Rating_old"))
+View(Cubonds)
+Cubonds <- left_join(CumBonds, Downgradedays, by = c("Ticker","Date","mean_PX_ASK","mean_PX_BID","Agency","Rating_new","Identifier_new","Rating_old","Identifier_old","Ctry","Identifier_period","Spread"))
+Cubonds <- left_join(CumBonds, Downgradedays, by = c("Ticker","Date","mean_PX_ASK","mean_PX_BID","Agency","Rating_new","Identifier_new","Rating_old","Identifier_old","Ctry","Identifier_period"))
+View(Spreadchange1)
+Spreadchange1 <- CumBonds %>% filter(Date %in% Downgradedays1.1$Date, Ticker %in% Downgradedays1.1$Ticker)
+Spreadchange2 <- CumBonds %>% filter(Date %in% Downgradedays1.2$Date, Ticker %in% Downgradedays1.2$Ticker)
+View(Spreadchange1)
+Spreadchange1 <- CuBonds %>% filter(Date %in% Downgradedays1.1$Date, Ticker %in% Downgradedays1.1$Ticker)
+Spreadchange1 <- Cubonds %>% filter(Date %in% Downgradedays1.1$Date, Ticker %in% Downgradedays1.1$Ticker)
+Spreadchange2 <- Cubonds %>% filter(Date %in% Downgradedays1.2$Date, Ticker %in% Downgradedays1.2$Ticker)
+View(Spreadchange1)
+View(Downgradedays1.1)
+Spreadchange1 <- left_join(Cubonds, Downgradedays1.1, by = c("Ticker","Date"))
+View(Spreadchange1)
+Spreadchange2 <- left_join(Cubonds, Downgradedays1.2, by = c("Ticker","Date"))
+Period1.1 <- Spreadchange1 %>% filter(!is.na(ID.y))
+View(Period1.1)
+Period1.2 <- Spreadchange2 %>% filter(!is.na(ID.y))
+Period1 <- Period1.1$Spread - Period1.2 if(Period1.1$ID.y == Period1.2$ID.y)
+Period1 <- left_join(Period1.1, Period1.2, by = "ID.y")
+View(Period1)
+Period1delta <- mutate(Period1, delta.spread = Period1$Spread.x - Period1$Spread.y)
+Period1delta <- mutate(Period1, delta = Period1$Spread.x - Period1$Spread.y)
+eriod1$Spread.x - Period1$Spread.y
+Period1$Spread.x - Period1$Spread.y
+Period1delta <- Period1 %>% mutate(delta = Spread.x - Spread.y)
+t.test(Period1delta$delta)
+t.test((Period1delta$delta * 100))
+View(Period1delta)
+Period1delta1 <- Period1delta %>% filter(Identifier_period.y.y == 1)
+Period1delta2 <- Period1delta %>% filter(Identifier_period.y.y == 2)
+Period1delta3 <- Period1delta %>% filter(Identifier_period.y.y == 3)
+t.test((Period1delta1$delta * 100))
+t.test((Period1delta2$delta * 100))
+t.test((Period1delta3$delta * 100))
+Spreadchange3 <- left_join(Cubonds, Downgradedays2.1, by = c("Ticker","Date"))
+Spreadchange4 <- left_join(Cubonds, Downgradedays2.2, by = c("Ticker","Date"))
+Period2.1 <- Spreadchange3 %>% filter(!is.na(ID.y))
+Period2.2 <- Spreadchange4 %>% filter(!is.na(ID.y))
+Period2 <- left_join(Period2.1, Period2.2, by = "ID.y")
+Period2delta <- Period2 %>% mutate(delta = Spread.x - Spread.y)
+t.test((Period2delta$delta * 100))
+Period2delta1 <- Period2delta %>% filter(Identifier_period.y.y == 1)
+Period2delta2 <- Period2delta %>% filter(Identifier_period.y.y == 2)
+Period2delta3 <- Period2delta %>% filter(Identifier_period.y.y == 3)
+t.test((Period2delta1$delta * 100))
+t.test((Period2delta2$delta * 100))
+t.test((Period2delta3$delta * 100))
+Spreadchange5 <- left_join(Cubonds, Downgradedays3.1, by = c("Ticker","Date"))
+Spreadchange6 <- left_join(Cubonds, Downgradedays3.2, by = c("Ticker","Date"))
+Period3.1 <- Spreadchange5 %>% filter(!is.na(ID.y))
+Period3.2 <- Spreadchange6 %>% filter(!is.na(ID.y))
+Period3 <- left_join(Period3.1, Period3.2, by = "ID.y")
+Period3delta <- Period3 %>% mutate(delta = Spread.x - Spread.y)
+t.test((Period3delta$delta * 100))
+Period3delta1 <- Period3delta %>% filter(Identifier_period.y.y == 1)
+Period3delta2 <- Period3delta %>% filter(Identifier_period.y.y == 2)
+Period3delta3 <- Period3delta %>% filter(Identifier_period.y.y == 3)
+Period3delta1 <- Period3delta %>% filter(Identifier_period.y.y near(1))
+Period3delta1 <- Period3delta %>% filter(Identifier_period.y.y =< 1)
+Period3delta1 <- Period3delta %>% filter(Identifier_period.y.y <= 1)
+Period3delta1 <- Period3delta %>% filter(Identifier_period.y.y == 1)
+Period3delta1 <- Period3delta %>% filter(Identifier_period.x.y == 1)
+Period3delta1 <- Period3delta %>% filter(Identifier_period.y.y == 1)
+t.test((Period3delta1$delta*100))
+t.test((Period3delta2$delta*100))
+t.test((Period3delta3$delta*100))
+Spreadchange7 <- left_join(Cubonds, Downgradedays4.1, by = c("Ticker","Date"))
+Spreadchange8 <- left_join(Cubonds, Downgradedays4.2, by = c("Ticker","Date"))
+Period4.1 <- Spreadchange7 %>% filter(!is.na(ID.y))
+Period4.2 <- Spreadchange8 %>% filter(!is.na(ID.y))
+Period4 <- left_join(Period4.1, Period4.2, by = "ID.y")
+Period4delta <- Period4 %>% mutate(delta = Spread.x - Spread.y)
+t.test((Period4delta$delta * 100))
+Period4delta1 <- Period4delta %>% filter(Identifier_period.y.y == 1)
+Period4delta2 <- Period4delta %>% filter(Identifier_period.y.y == 2)
+Period4delta3 <- Period4delta %>% filter(Identifier_period.y.y == 3)
+t.test(Period4delta1 * 100)
+t.test(Period4delta1$delta * 100)
+t.test(Period4delta2$delta * 100)
+t.test(Period4delta3$delta * 100)
+Downgradedays5.1 <- mutate(Downgradedays, Date = Date + days(1))
+Downgradedays5.2 <- mutate(Downgradedays, Date = Date + days(60))
+Spreadchange9 <- left_join(Cubonds, Downgradedays5.1, by = c("Ticker","Date"))
+Spreadchange10 <- left_join(Cubonds, Downgradedays5.2, by = c("Ticker","Date"))
+Period5.1 <- Spreadchange9 %>% filter(!is.na(ID.y))
+Period5.2 <- Spreadchange10 %>% filter(!is.na(ID.y))
+Period5 <- left_join(Period5.1, Period5.2, by = "ID.y")
+Period5delta <- Period5 %>% mutate(delta = Spread.x - Spread.y)
+t.test((Period5delta$delta * 100))
+install.packages("stargazer")
+library(stargazer)
+stargazer(Cubonds)
+stargazer(Cubonds$Spread)
+summary(Cubonds)
+grpBonds <- Cubonds %>% group_by(Dates)
+grpBonds <- Cubonds %>% group_by(Date)
+mean(grpBonds$Spread)
+sd(grpBonds)
+sd(grpBonds$Spread)
+mean(select(grpBonds, grpBonds$Identifier_period == 1))
+mean(select(grpBonds$Spread, grpBonds$Identifier_period == 1))
+grpBonds1 <- select(grpBonds, grpBonds$Identifier_period == 1)
+mean(filter(grpBonds$Spread, grpBonds$Identifier_period == 1))
+grpBonds1 <- filter(grpBonds, grpBonds$Identifier_period == 1)
+grpBonds1 <- filter(grpBonds, Identifier_period == 1)
+summary(grpBonds1)
+sd(grpBonds1$Spread)
+grpBonds2 <- filter(grpBonds, Identifier_period == 2)
+summary(grpBonds2)
+sd(grpBonds2$Spread)
+grpBonds3 <- filter(grpBonds, Identifier_period == 3)
+summary(grpBonds3)
+sd(grpBonds3$Spread)
+install.packages("bizdays")
+library(bizdays)
+Downgradedays1.1 <- mutate(Downgradedays, Date = add.bizdays(Downgradedays$Date, -30))
+add.bizdays(Downgradedays$Date, -30, cal)
+add.bizdays(Downgradedays$Date, -30)
+View(Downgradedays)
+View(Downgradedays1.1)
+View(Downgradedays1.1)
+write.csv(Downgradedays, file = "Downgradedays.csv")
+View(Downgradedays)
+View(Downgradedays1.1)
+write.csv(Downgradedays1.1, file = "Downgradedayss.csv")
+head(Downgradedays1.1)
+head(select(Downgradedays1.1, Ticker, Date, mean_PX_ASK, mean_PX_BID, Agency))
+test <- Downgradedays1.1 %>%
+mutate(Day = weekdays(Date),
+Date = case_when(Day == "Saturday" ~ Date - 1,
+Day == "Sunday" ~ Date - 2,
+TRUE ~ Date)) %>%
+select(-Day)
+View(test)
+Downgradedays1.1 <- Downgradedays1.1 %>%
+mutate(Day = weekdays(Date),
+Date = case_when(Day == "Saturday" ~ Date - 1,
+Day == "Sunday" ~ Date - 2,
+TRUE ~ Date)) %>%
+select(-Day)
+Downgradedays1.2 <- Downgradedays1.2 %>%
+mutate(Day = weekdays(Date),
+Date = case_when(Day == "Saturday" ~ Date - 1,
+Day == "Sunday" ~ Date - 2,
+TRUE ~ Date)) %>%
+select(-Day)
+Downgradedays2.1 <- Downgradedays2.1 %>%
+mutate(Day = weekdays(Date),
+Date = case_when(Day == "Saturday" ~ Date - 1,
+Day == "Sunday" ~ Date - 2,
+TRUE ~ Date)) %>%
+select(-Day)
+Downgradedays2.2 <- Downgradedays2.2 %>%
+mutate(Day = weekdays(Date),
+Date = case_when(Day == "Saturday" ~ Date - 1,
+Day == "Sunday" ~ Date - 2,
+TRUE ~ Date)) %>%
+select(-Day)
+Downgradedays3.1 <- Downgradedays3.1 %>%
+mutate(Day = weekdays(Date),
+Date = case_when(Day == "Saturday" ~ Date - 1,
+Day == "Sunday" ~ Date - 2,
+TRUE ~ Date)) %>%
+select(-Day)
+Downgradedays3.2 <- Downgradedays3.2 %>%
+mutate(Day = weekdays(Date),
+Date = case_when(Day == "Saturday" ~ Date - 1,
+Day == "Sunday" ~ Date - 2,
+TRUE ~ Date)) %>%
+select(-Day)
+Downgradedays4.1 <- Downgradedays4.1 %>%
+mutate(Day = weekdays(Date),
+Date = case_when(Day == "Saturday" ~ Date - 1,
+Day == "Sunday" ~ Date - 2,
+TRUE ~ Date)) %>%
+select(-Day)
+Date = case_when(Day == "Saturday" ~ Date - 1,
+Day == "Sunday" ~ Date - 2,
+TRUE ~ Date)) %>%
+select(-Day)
+Spreadchange1 <- left_join(Cubonds, Downgradedays1.1, by = c("Ticker","Date"))
+View(Spreadchange1)
+View(Downgradedays1.1)
+View(Spreadchange1)
+View(Period5.1)
+View(Period5.2)
+Spreadchange2 <- left_join(Cubonds, Downgradedays1.2, by = c("Ticker","Date"))
+Spreadchange3 <- left_join(Cubonds, Downgradedays2.1, by = c("Ticker","Date"))
+Spreadchange4 <- left_join(Cubonds, Downgradedays2.2, by = c("Ticker","Date"))
+Spreadchange5 <- left_join(Cubonds, Downgradedays3.1, by = c("Ticker","Date"))
+Spreadchange6 <- left_join(Cubonds, Downgradedays3.2, by = c("Ticker","Date"))
+Spreadchange7 <- left_join(Cubonds, Downgradedays4.1, by = c("Ticker","Date"))
+Spreadchange8 <- left_join(Cubonds, Downgradedays4.2, by = c("Ticker","Date"))
+Period1.1 <- Spreadchange1 %>% filter(!is.na(ID.y))
+Period1.2 <- Spreadchange2 %>% filter(!is.na(ID.y))
+Period2.1 <- Spreadchange3 %>% filter(!is.na(ID.y))
+Period2.2 <- Spreadchange4 %>% filter(!is.na(ID.y))
+Period3.1 <- Spreadchange5 %>% filter(!is.na(ID.y))
+Period3.2 <- Spreadchange6 %>% filter(!is.na(ID.y))
+Period4.1 <- Spreadchange7 %>% filter(!is.na(ID.y))
+Period4.2 <- Spreadchange8 %>% filter(!is.na(ID.y))
+Period1 <- left_join(Period1.1, Period1.2, by = "ID.y")
+View(Period1)
+View(Spreadchange1)
+Spreadchange1 <- select(left_join(Cubonds, Downgradedays1.1, by = c("Ticker","Date")),Ticker, Date, Agency.y, ID.y, Spread, Rating_new.y, Identifier_new.y, Rating_old.y, Identifier_old.y, Identifier_period.x)
+View(Spreadchange1)
+Spreadchange2 <- select(left_join(Cubonds, Downgradedays1.2, by = c("Ticker","Date")),Ticker, Date, Agency.y, ID.y, Spread, Rating_new.y, Identifier_new.y, Rating_old.y, Identifier_old.y, Identifier_period.x)
+Period1.1 <- Spreadchange1 %>% filter(!is.na(ID.y))
+Period1.2 <- Spreadchange2 %>% filter(!is.na(ID.y))
+View(Period1.2)
+View(Period1.1)
+Period1 <- left_join(Period1.1, Period1.2, by = "ID.y")
+View(Period1)
+Period1delta <- Period1 %>% mutate(delta = Spread.y - Spread.x)
+mean(Period1delta$delta)
+View(Period1delta)
+t.test(Period1delta$delta * 100)
+Spreadchange3 <- select(left_join(Cubonds, Downgradedays2.1, by = c("Ticker","Date")),Ticker, Date, Agency.y, ID.y, Spread, Rating_new.y, Identifier_new.y, Rating_old.y, Identifier_old.y, Identifier_period.x)
+Spreadchange4 <- select(left_join(Cubonds, Downgradedays2.2, by = c("Ticker","Date")),Ticker, Date, Agency.y, ID.y, Spread, Rating_new.y, Identifier_new.y, Rating_old.y, Identifier_old.y, Identifier_period.x)
+Spreadchange5 <- select(left_join(Cubonds, Downgradedays3.1, by = c("Ticker","Date")),Ticker, Date, Agency.y, ID.y, Spread, Rating_new.y, Identifier_new.y, Rating_old.y, Identifier_old.y, Identifier_period.x)
+Spreadchange6 <- select(left_join(Cubonds, Downgradedays3.2, by = c("Ticker","Date")),Ticker, Date, Agency.y, ID.y, Spread, Rating_new.y, Identifier_new.y, Rating_old.y, Identifier_old.y, Identifier_period.x)
+Spreadchange7 <- select(left_join(Cubonds, Downgradedays4.1, by = c("Ticker","Date")),Ticker, Date, Agency.y, ID.y, Spread, Rating_new.y, Identifier_new.y, Rating_old.y, Identifier_old.y, Identifier_period.x)
+Spreadchange8 <- select(left_join(Cubonds, Downgradedays4.2, by = c("Ticker","Date")),Ticker, Date, Agency.y, ID.y, Spread, Rating_new.y, Identifier_new.y, Rating_old.y, Identifier_old.y, Identifier_period.x)
+Period1.1 <- Spreadchange1 %>% filter(!is.na(ID.y))
+Period1.2 <- Spreadchange2 %>% filter(!is.na(ID.y))
+Period2.1 <- Spreadchange3 %>% filter(!is.na(ID.y))
+Period2.2 <- Spreadchange4 %>% filter(!is.na(ID.y))
+Period3.1 <- Spreadchange5 %>% filter(!is.na(ID.y))
+Period3.2 <- Spreadchange6 %>% filter(!is.na(ID.y))
+Period4.1 <- Spreadchange7 %>% filter(!is.na(ID.y))
+Period4.2 <- Spreadchange8 %>% filter(!is.na(ID.y))
+Period1 <- left_join(Period1.1, Period1.2, by = "ID.y")
+Period2 <- left_join(Period2.1, Period2.2, by = "ID.y")
+Period3 <- left_join(Period3.1, Period3.2, by = "ID.y")
+Period4 <- left_join(Period4.1, Period4.2, by = "ID.y")
+Period1delta <- Period1 %>% mutate(delta = Spread.y - Spread.x)
+Period2delta <- Period2 %>% mutate(delta = Spread.y - Spread.x)
+Period3delta <- Period3 %>% mutate(delta = Spread.y - Spread.x)
+Period4delta <- Period4 %>% mutate(delta = Spread.y - Spread.x)
+t.test(Period1delta$delta * 100)
+t.test(Period2delta$delta * 100)
+t.test(Period3delta$delta * 100)
+t.test(Period4delta$delta * 100)
+View(Period1)
+View(Period1.2)
+View(Period1.2)
+View(Downgradedays1.1)
+View(Period3)
+View(Spreadchange1)
+View(Period1.1)
+View(Period1)
+Period1 <-  distinct(Period1.1)
+Period1.1 <-  distinct(Period1.1)
+View(Period1.1)
+View(Period1)
+Period1 <- left_join(Period1.1, Period1.2, by = "ID.y")
+Period1delta <- Period1 %>% mutate(delta = Spread.y - Spread.x)
+View(Period1.2)
+View(Period1.1)
+View(Period1)
+View(Period1delta)
+Period1delta1 <- Period1delta %>% filter(Identifier_period.y.y == 1)
+View(Spreadchange1)
+Period1delta1 <- Period1delta %>% filter(Identifier_period.x.x == 1)
+Period1delta2 <- Period1delta %>% filter(Identifier_period.x.x == 2)
+Period1delta3 <- Period1delta %>% filter(Identifier_period.x.x == 3)
+Period2delta1 <- Period2delta %>% filter(Identifier_period.x.x == 1)
+Period2delta2 <- Period2delta %>% filter(Identifier_period.x.x == 2)
+Period2delta3 <- Period2delta %>% filter(Identifier_period.x.x == 3)
+Period3delta1 <- Period3delta %>% filter(Identifier_period.x.x == 1)
+Period3delta2 <- Period3delta %>% filter(Identifier_period.x.x == 2)
+Period3delta3 <- Period3delta %>% filter(Identifier_period.x.x == 3)
+Period4delta1 <- Period4delta %>% filter(Identifier_period.x.x == 1)
+Period4delta2 <- Period4delta %>% filter(Identifier_period.x.x == 2)
+Period4delta3 <- Period4delta %>% filter(Identifier_period.x.x == 3)
+t.test(Period1.1$delta *100)
+t.test(Period1delta1 *100)
+t.test(Period1delta1$delta *100)
+t.test(Period1delta2$delta *100)
+t.test(Period1delta3$delta *100)
+t.test(Period1delta$delta *100)
+t.test(Period2delta$delta *100)
+t.test(Period2delta1$delta *100)
+t.test(Period2delta2$delta *100)
+t.test(Period2delta3$delta *100)
+t.test(Period3delta1$delta *100)
+t.test(Period3delta2$delta *100)
+t.test(Period3delta3$delta *100)
+t.test(Period4delta1$delta *100)
+t.test(Period4delta2$delta *100)
+t.test(Period4delta3$delta *100)
+test <- mydf %>% group_by(Date) %>% summarise(mean(Spread))
+test <- Cubonds %>% group_by(Date) %>% summarise(mean(Spread))
+View(test)
+allbonds <- Cubonds %>% group_by(Date) %>% summarise(mean(Spread))
+mean(allbonds$`mean(Spread)`)
+summary(allbonds)
+shapiro.test(Period1delta$delta)
+hist(Period1delta)
+hist(Period1delta$delta)
+install.packages("htest")
+library(htest)
+install.packages("htest")
+View(Period1delta)
+View(Period1.1)
+View(Period1)
+write.csv(Period1, file = "Period1.csv")
+test <- Period1delta %>% filter(Identifier_new.y.x == c(1,2,3), Identifier_old.y.x == c(1,2,3))
+test <- Period1delta %>% filter(Identifier_new.y.x is in c(1,2,3), Identifier_old.y.x is in c(1,2,3))
+test <- Period1delta %>% filter(Identifier_new.y.x %in% c(1,2,3), Identifier_old.y.x %in% c(1,2,3))
+View(test)
+Period1deltaIG <- Period1delta %>% filter(Identifier_new.y.x %in% c(1,2,3), Identifier_old.y.x %in% c(1,2,3))
+Period1delta1IG <- Period1delta1 %>% filter(Identifier_new.y.x %in% c(1,2,3), Identifier_old.y.x %in% c(1,2,3))
+Period1delta2IG <- Period1delta2 %>% filter(Identifier_new.y.x %in% c(1,2,3), Identifier_old.y.x %in% c(1,2,3))
+Period1delta3IG <- Period1delta3 %>% filter(Identifier_new.y.x %in% c(1,2,3), Identifier_old.y.x %in% c(1,2,3))
+Period2delta1IG <- Period2delta1 %>% filter(Identifier_new.y.x %in% c(1,2,3), Identifier_old.y.x %in% c(1,2,3))
+Period2delta2IG <- Period2delta2 %>% filter(Identifier_new.y.x %in% c(1,2,3), Identifier_old.y.x %in% c(1,2,3))
+Period2delta3IG <- Period2delta3 %>% filter(Identifier_new.y.x %in% c(1,2,3), Identifier_old.y.x %in% c(1,2,3))
+Period3delta1IG <- Period3delta1 %>% filter(Identifier_new.y.x %in% c(1,2,3), Identifier_old.y.x %in% c(1,2,3))
+Period3delta2IG <- Period3delta2 %>% filter(Identifier_new.y.x %in% c(1,2,3), Identifier_old.y.x %in% c(1,2,3))
+Period3delta3IG <- Period3delta3 %>% filter(Identifier_new.y.x %in% c(1,2,3), Identifier_old.y.x %in% c(1,2,3))
+Period4delta1IG <- Period4delta1 %>% filter(Identifier_new.y.x %in% c(1,2,3), Identifier_old.y.x %in% c(1,2,3))
+Period4delta2IG <- Period4delta2 %>% filter(Identifier_new.y.x %in% c(1,2,3), Identifier_old.y.x %in% c(1,2,3))
+Period4delta3IG <- Period4delta3 %>% filter(Identifier_new.y.x %in% c(1,2,3), Identifier_old.y.x %in% c(1,2,3))
+Period2deltaIG <- Period2delta %>% filter(Identifier_new.y.x %in% c(1,2,3), Identifier_old.y.x %in% c(1,2,3))
+Period3deltaIG <- Period3delta %>% filter(Identifier_new.y.x %in% c(1,2,3), Identifier_old.y.x %in% c(1,2,3))
+Period4deltaIG <- Period4delta %>% filter(Identifier_new.y.x %in% c(1,2,3), Identifier_old.y.x %in% c(1,2,3))
+t.test(Period1deltaIG)
+t.test(Period1deltaIG$delta)
+Period1deltaIGSG <- Period1delta %>% filter(Identifier_new.y.x %in% c(4,5,6), Identifier_old.y.x %in% c(1,2,3))
+t.test(Period1deltaIG1$delta)
+t.test(Period1delta1IG$delta)
+t.test(Period1delta2IG$delta)
+t.test(Period1delta3IG$delta)
+t.test(Period2deltaIG$delta)
+t.test(Period2delta1IG$delta)
+t.test(Period2delta2IG$delta)
+t.test(Period2delta3IG$delta)
+t.test(Period3deltaIG$delta)
+t.test(Period3delta1IG$delta)
+t.test(Period3delta2IG$delta)
+t.test(Period3delta3IG$delta)
+t.test(Period4deltaIG$delta)
+t.test(Period4delta1IG$delta)
+t.test(Period4delta2IG$delta)
+t.test(Period4delta3IG$delta)
+install.packages("wBoot")
+library(boot)
+library(wBoot)
+Period1deltaIGSG <- Period1delta %>% filter(Identifier_new.y.x %in% c(4,5,6), Identifier_old.y.x %in% c(1,2,3))
+Period1delta1IGSG <- Period1delta1 %>% filter(Identifier_new.y.x %in% c(4,5,6), Identifier_old.y.x %in% c(1,2,3))
+Period1delta2IGSG <- Period1delta2 %>% filter(Identifier_new.y.x %in% c(4,5,6), Identifier_old.y.x %in% c(1,2,3))
+Period1delta3IGSG <- Period1delta3 %>% filter(Identifier_new.y.x %in% c(4,5,6), Identifier_old.y.x %in% c(1,2,3))
+Period2deltaIGSG <- Period2delta %>% filter(Identifier_new.y.x %in% c(4,5,6), Identifier_old.y.x %in% c(1,2,3))
+Period2delta1IGSG <- Period2delta1 %>% filter(Identifier_new.y.x %in% c(4,5,6), Identifier_old.y.x %in% c(1,2,3))
+Period2delta2IGSG <- Period2delta2 %>% filter(Identifier_new.y.x %in% c(4,5,6), Identifier_old.y.x %in% c(1,2,3))
+Period2delta3IGSG <- Period2delta3 %>% filter(Identifier_new.y.x %in% c(4,5,6), Identifier_old.y.x %in% c(1,2,3))
+Period3deltaIGSG <- Period3delta %>% filter(Identifier_new.y.x %in% c(4,5,6), Identifier_old.y.x %in% c(1,2,3))
+Period3delta1IGSG <- Period3delta1 %>% filter(Identifier_new.y.x %in% c(4,5,6), Identifier_old.y.x %in% c(1,2,3))
+Period3delta2IGSG <- Period3delta2 %>% filter(Identifier_new.y.x %in% c(4,5,6), Identifier_old.y.x %in% c(1,2,3))
+Period3delta3IGSG <- Period3delta3 %>% filter(Identifier_new.y.x %in% c(4,5,6), Identifier_old.y.x %in% c(1,2,3))
+Period4deltaIGSG <- Period3delta %>% filter(Identifier_new.y.x %in% c(4,5,6), Identifier_old.y.x %in% c(1,2,3))
+Period4delta1IGSG <- Period4delta1 %>% filter(Identifier_new.y.x %in% c(4,5,6), Identifier_old.y.x %in% c(1,2,3))
+Period4delta2IGSG <- Period4delta2 %>% filter(Identifier_new.y.x %in% c(4,5,6), Identifier_old.y.x %in% c(1,2,3))
+Period4delta3IGSG <- Period4delta3 %>% filter(Identifier_new.y.x %in% c(4,5,6), Identifier_old.y.x %in% c(1,2,3))
+boot.one.bca(Period1deltaIGSG, mean, null.hyp = 0, alternative = "two.sided", conf.level = 0.99, R=9999)
+boot.one.bca(Period1deltaIGSG$delta, mean, null.hyp = 0, alternative = "two.sided", conf.level = 0.99, R=9999)
+boot.one.bca(Period1deltaIGSG$delta, mean, null.hyp = 0, alternative = "two.sided", conf.level = 0.95, R=9999)
+boot.one.bca(Period1delta1IGSG$delta, mean, null.hyp = 0, alternative = "two.sided", conf.level = 0.99, R=9999)
+boot.one.bca(Period1delta2IGSG$delta, mean, null.hyp = 0, alternative = "two.sided", conf.level = 0.99, R=9999)
+boot.one.bca(Period1delta3IGSG$delta, mean, null.hyp = 0, alternative = "two.sided", conf.level = 0.99, R=9999)
+boot.one.bca(Period2deltaIGSG$delta, mean, null.hyp = 0, alternative = "two.sided", conf.level = 0.99, R=9999)
+boot.one.bca(Period1deltaIGSG$delta *100, mean, null.hyp = 0, alternative = "two.sided", conf.level = 0.99, R=9999)
+boot.one.bca(Period1delta1IGSG$delta, mean, null.hyp = 0, alternative = "two.sided", conf.level = 0.99, R=9999)
+boot.one.bca(Period1delta2IGSG$delta, mean, null.hyp = 0, alternative = "two.sided", conf.level = 0.99, R=9999)
+boot.one.bca(Period1delta3IGSG$delta, mean, null.hyp = 0, alternative = "two.sided", conf.level = 0.99, R=9999)
+boot.one.bca(Period2deltaIGSG$delta, mean, null.hyp = 0, alternative = "two.sided", conf.level = 0.99, R=9999)
+boot.one.bca(Period1deltaIGSG$delta *100, mean, null.hyp = 0, alternative = "two.sided", conf.level = 0.99, R=9999)
+boot.one.bca(Period1delta1IGSG$delta *100, mean, null.hyp = 0, alternative = "two.sided", conf.level = 0.99, R=9999)
+boot.one.bca(Period1delta2IGSG$delta *100, mean, null.hyp = 0, alternative = "two.sided", conf.level = 0.99, R=9999)
+boot.one.bca(Period1delta3IGSG$delta *100, mean, null.hyp = 0, alternative = "two.sided", conf.level = 0.99, R=9999)
+boot.one.bca(Period2deltaIGSG$delta *100, mean, null.hyp = 0, alternative = "two.sided", conf.level = 0.99, R=9999)
+boot.one.bca(Period2delta1IGSG$delta *100, mean, null.hyp = 0, alternative = "two.sided", conf.level = 0.99, R=9999)
+boot.one.bca(Period2delta2IGSG$delta *100, mean, null.hyp = 0, alternative = "two.sided", conf.level = 0.99, R=9999)
+boot.one.bca(Period2delta3IGSG$delta *100, mean, null.hyp = 0, alternative = "two.sided", conf.level = 0.99, R=9999)
+boot.one.bca(Period3deltaIGSG$delta *100, mean, null.hyp = 0, alternative = "two.sided", conf.level = 0.99, R=9999)
+boot.one.bca(Period3delta1IGSG$delta *100, mean, null.hyp = 0, alternative = "two.sided", conf.level = 0.99, R=9999)
+boot.one.bca(Period3delta2IGSG$delta *100, mean, null.hyp = 0, alternative = "two.sided", conf.level = 0.99, R=9999)
+boot.one.bca(Period3delta3IGSG$delta *100, mean, null.hyp = 0, alternative = "two.sided", conf.level = 0.99, R=9999)
+boot.one.bca(Period4deltaIGSG$delta *100, mean, null.hyp = 0, alternative = "two.sided", conf.level = 0.99, R=9999)
+boot.one.bca(Period4delta1IGSG$delta *100, mean, null.hyp = 0, alternative = "two.sided", conf.level = 0.99, R=9999)
+boot.one.bca(Period4delta2IGSG$delta *100, mean, null.hyp = 0, alternative = "two.sided", conf.level = 0.99, R=9999)
+boot.one.bca(Period4delta3IGSG$delta *100, mean, null.hyp = 0, alternative = "two.sided", conf.level = 0.99, R=9999)
+Period1deltaSG <- Period1delta %>% filter(Identifier_new.y.x %in% c(4,5,6), Identifier_old.y.x %in% c(4,5,6))
+Period1delta1SG <- Period1delta1 %>% filter(Identifier_new.y.x %in% c(4,5,6), Identifier_old.y.x %in% c(4,5,6))
+Period1delta2SG <- Period1delta2 %>% filter(Identifier_new.y.x %in% c(4,5,6), Identifier_old.y.x %in% c(4,5,6))
+Period1delta3SG <- Period1delta3 %>% filter(Identifier_new.y.x %in% c(4,5,6), Identifier_old.y.x %in% c(4,5,6))
+Period2deltaSG <- Period2delta %>% filter(Identifier_new.y.x %in% c(4,5,6), Identifier_old.y.x %in% c(4,5,6))
+Period2delta1SG <- Period2delta1 %>% filter(Identifier_new.y.x %in% c(4,5,6), Identifier_old.y.x %in% c(4,5,6))
+Period2delta2SG <- Period2delta2 %>% filter(Identifier_new.y.x %in% c(4,5,6), Identifier_old.y.x %in% c(4,5,6))
+Period2delta3SG <- Period2delta3 %>% filter(Identifier_new.y.x %in% c(4,5,6), Identifier_old.y.x %in% c(4,5,6))
+Period3deltaSG <- Period3delta %>% filter(Identifier_new.y.x %in% c(4,5,6), Identifier_old.y.x %in% c(4,5,6))
+Period3delta1SG <- Period3delta1 %>% filter(Identifier_new.y.x %in% c(4,5,6), Identifier_old.y.x %in% c(4,5,6))
+Period3delta2SG <- Period3delta2 %>% filter(Identifier_new.y.x %in% c(4,5,6), Identifier_old.y.x %in% c(4,5,6))
+Period3delta3SG <- Period3delta3 %>% filter(Identifier_new.y.x %in% c(4,5,6), Identifier_old.y.x %in% c(4,5,6))
+Period4deltaSG <- Period4delta %>% filter(Identifier_new.y.x %in% c(4,5,6), Identifier_old.y.x %in% c(4,5,6))
+Period4delta1SG <- Period4delta1 %>% filter(Identifier_new.y.x %in% c(4,5,6), Identifier_old.y.x %in% c(4,5,6))
+Period4delta2SG <- Period4delta2 %>% filter(Identifier_new.y.x %in% c(4,5,6), Identifier_old.y.x %in% c(4,5,6))
+Period4delta3SG <- Period4delta3 %>% filter(Identifier_new.y.x %in% c(4,5,6), Identifier_old.y.x %in% c(4,5,6))
+boot.one.bca(Period1deltaSG$delta *100, mean, null.hyp = 0, alternative = "two.sided", conf.level = 0.99, R=9999)
+boot.one.bca(Period1deltaSG$delta *100, mean, null.hyp = 0, alternative = "two.sided", conf.level = 0.99, R=9999)
+View(Period1deltaSG)
+loadhistory("~/Documents/UZH/Seminar on Market Microstructure/BondLiquidity/BondLiquidity.Rproj")
+history(max.show=Inf)
+loadhistory("~/Documents/UZH/Seminar on Market Microstructure/BondLiquidity/BondLiquidity.Rproj")
+history -r
+savehistory("~/Documents/UZH/Seminar on Market Microstructure/BondLiquidity/history.Rhistory")
+loadhistory(file ="history.Rhistory")
+loadhistory("~/Documents/UZH/Seminar on Market Microstructure/BondLiquidity/history.Rhistory")
+View(Period1deltaSG)
+Period1deltaSG <- Period1deltaSG %>% filter(!is.na(Ticker.y))
+Period1delta1SG <- Period1delta1SG %>% filter(!is.na(Ticker.y))
+Period1delta2SG <- Period1delta2SG %>% filter(!is.na(Ticker.y))
+Period1delta3SG <- Period1delta3SG %>% filter(!is.na(Ticker.y))
+Period2deltaSG <- Period2deltaSG %>% filter(!is.na(Ticker.y))
+Period2delta1SG <- Period2delta1SG %>% filter(!is.na(Ticker.y))
+Period2delta2SG <- Period2delta2SG %>% filter(!is.na(Ticker.y))
+Period2delta3SG <- Period2delta3SG %>% filter(!is.na(Ticker.y))
+Period3deltaSG <- Period3deltaSG %>% filter(!is.na(Ticker.y))
+Period3delta1SG <- Period3delta1SG %>% filter(!is.na(Ticker.y))
+Period3delta2SG <- Period3delta2SG %>% filter(!is.na(Ticker.y))
+Period3delta3SG <- Period3delta3SG %>% filter(!is.na(Ticker.y))
+Period4deltaSG <- Period4deltaSG %>% filter(!is.na(Ticker.y))
+Period4delta1SG <- Period4delta1SG %>% filter(!is.na(Ticker.y))
+Period4delta2SG <- Period4delta2SG %>% filter(!is.na(Ticker.y))
+Period4delta3SG <- Period4delta3SG %>% filter(!is.na(Ticker.y))
+boot.one.bca(Period1deltaSG$delta *100, mean, null.hyp = 0, alternative = "two.sided", conf.level = 0.99, R=9999)
+boot.one.bca(Period1delta1SG$delta *100, mean, null.hyp = 0, alternative = "two.sided", conf.level = 0.99, R=9999)
+boot.one.bca(Period1delta2SG$delta *100, mean, null.hyp = 0, alternative = "two.sided", conf.level = 0.99, R=9999)
+boot.one.bca(Period1delta3SG$delta *100, mean, null.hyp = 0, alternative = "two.sided", conf.level = 0.99, R=9999)
+boot.one.bca(Period2deltaSG$delta *100, mean, null.hyp = 0, alternative = "two.sided", conf.level = 0.99, R=9999)
+boot.one.bca(Period2delta1SG$delta *100, mean, null.hyp = 0, alternative = "two.sided", conf.level = 0.99, R=9999)
+boot.one.bca(Period2delta2SG$delta *100, mean, null.hyp = 0, alternative = "two.sided", conf.level = 0.99, R=9999)
+boot.one.bca(Period2delta3SG$delta *100, mean, null.hyp = 0, alternative = "two.sided", conf.level = 0.99, R=9999)
+boot.one.bca(Period3deltaSG$delta *100, mean, null.hyp = 0, alternative = "two.sided", conf.level = 0.99, R=9999)
+boot.one.bca(Period3delta1SG$delta *100, mean, null.hyp = 0, alternative = "two.sided", conf.level = 0.99, R=9999)
+boot.one.bca(Period3delta2SG$delta *100, mean, null.hyp = 0, alternative = "two.sided", conf.level = 0.99, R=9999)
+boot.one.bca(Period3delta3SG$delta *100, mean, null.hyp = 0, alternative = "two.sided", conf.level = 0.99, R=9999)
+boot.one.bca(Period4deltaSG$delta *100, mean, null.hyp = 0, alternative = "two.sided", conf.level = 0.99, R=9999)
+boot.one.bca(Period4delta1SG$delta *100, mean, null.hyp = 0, alternative = "two.sided", conf.level = 0.99, R=9999)
+boot.one.bca(Period4delta2SG$delta *100, mean, null.hyp = 0, alternative = "two.sided", conf.level = 0.99, R=9999)
+boot.one.bca(Period4delta3SG$delta *100, mean, null.hyp = 0, alternative = "two.sided", conf.level = 0.99, R=9999)
+boot.one.bca(Period4delta1SG$delta *100, mean, null.hyp = 0, alternative = "two.sided", conf.level = 0.99, R=9999)
+View(IGBonds_incl_ticker)
+d <- melt(Cubonds, "Date")
+d$Dates <- as.Date(d$Date)
+install.packages("reshape2")
+library(reshape2)
+d <- melt(Cubonds, "Date")
+d$Dates <- as.Date(d$Date)
+View(Cubonds)
+View(d)
+View(Cubonds)
+CumBonds <- Cubonds %>% group_by(Date) %>% summarise(mean(mean_PX_BID),mean(mean_PX_ASK))
+View(CumBonds)
+d <- melt(Cubonds, "Date")
+d$Dates <- as.Date(d$Date)
+View(d)
+d <- melt(Cumbonds, "Date")
+d$Dates <- as.Date(d$Date)
+d <- melt(CumBonds, "Date")
+d$Dates <- as.Date(d$Date)
+View(d)
+CumBonds <- rename(CumBonds, PX_Ask = mean(mean_PX_ASK))
+CumBonds <- rename(CumBonds, PX_Ask = CumBonds$`mean(mean_PX_ASK)`)
+CumBonds <- rename(CumBonds, PX_Ask = "mean(mean_PX_ASK)")
+View(CumBonds)
+CumBonds <- rename(CumBonds, PX_Bid = "mean(mean_PX_BID)")
+View(CumBonds)
+CumBonds <- CumBonds %>% mutate(PX_Mid = ((PX_Ask - PX_Bid)/2 + PX_Bid))
+View(CumBonds)
+d <- melt(CumBonds, "Date")
+d$Dates <- as.Date(d$Date)
+View(d)
+ggplot(d, aes(Date, value, color = variable)) +
+geom_line(aes(linetype = variable, size=variable)) +
+scale_linetype_manual(values=c("solid", "dashed", "solid"))+
+labs(color = NULL, linetype = NULL, size = NULL) +
+theme_classic() +
+theme(legend.position = "bottom") +
+ylab("Bond prices") +
+scale_colour_manual(values=c("gray80", "gray25", "gray0")) +
+scale_size_manual(values=c(1, 1, 1)) +
+theme(
+legend.position = "bottom",
+legend.direction = "vertical",
+legend.box.margin = margin(t = 20),
+axis.title.x = element_text(margin = margin(t = 20)),
+axis.title.y = element_text(margin = margin(r = 20))
+)
+ggplot(d, aes(Date, value, color = variable)) +
+geom_line(aes(linetype = variable, size=variable)) +
+scale_linetype_manual(values=c("solid", "dashed", "solid"))+
+labs(color = NULL, linetype = NULL, size = NULL) +
+theme_classic() +
+theme(legend.position = "bottom") +
+ylab("Bond prices") +
+scale_colour_manual(values=c("gray80", "gray25", "gray0")) +
+scale_size_manual(values=c(0.1, 0.1, 0.1)) +
+theme(
+legend.position = "bottom",
+legend.direction = "vertical",
+legend.box.margin = margin(t = 20),
+axis.title.x = element_text(margin = margin(t = 20)),
+axis.title.y = element_text(margin = margin(r = 20))
+)
+ggplot(d, aes(Date, value, color = variable)) +
+geom_line(aes(linetype = variable, size=variable)) +
+scale_linetype_manual(values=c("solid", "solid", "solid"))+
+labs(color = NULL, linetype = NULL, size = NULL) +
+theme_classic() +
+theme(legend.position = "bottom") +
+ylab("Bond prices") +
+scale_colour_manual(values=c("red", "blue", "green")) +
+scale_size_manual(values=c(0.2, 0.2, 0.2)) +
+theme(
+legend.position = "bottom",
+legend.direction = "vertical",
+legend.box.margin = margin(t = 20),
+axis.title.x = element_text(margin = margin(t = 20)),
+axis.title.y = element_text(margin = margin(r = 20))
+)
+ggplot(CumBonds, aes(Date, PX_Mid, color = variable)) +
+geom_line(aes(linetype = variable, size=variable)) +
+scale_linetype_manual(values=c("solid"))+
+labs(color = NULL, linetype = NULL, size = NULL) +
+theme_classic() +
+theme(legend.position = "bottom") +
+ylab("Bond prices") +
+scale_colour_manual(values=c("black")) +
+scale_size_manual(values=c(1)) +
+theme(
+legend.position = "bottom",
+legend.direction = "vertical",
+legend.box.margin = margin(t = 10),
+axis.title.x = element_text(margin = margin(t = 20)),
+axis.title.y = element_text(margin = margin(r = 20))
+)
+ggplot(CumBonds, aes(Date, PX_Mid, color = variable)) +
+geom_line() +
+scale_linetype_manual(values=c("solid"))+
+labs(color = NULL, linetype = NULL, size = NULL) +
+theme_classic() +
+theme(legend.position = "bottom") +
+ylab("Bond prices") +
+scale_colour_manual(values=c("black")) +
+scale_size_manual(values=c(1)) +
+theme(
+legend.position = "bottom",
+legend.direction = "vertical",
+legend.box.margin = margin(t = 10),
+axis.title.x = element_text(margin = margin(t = 20)),
+axis.title.y = element_text(margin = margin(r = 20))
+)
+bondpriceplot <- ggplot(CumBonds, aes(Date, PX_Mid))
++ geom_line() +
+labs(color = NULL, linetype = NULL, size = NULL) +
+theme_classic() +
+theme(legend.position = "bottom") +
+ylab("Bond prices") +
+theme(
+legend.position = "bottom",
+legend.direction = "vertical",
+legend.box.margin = margin(t = 10),
+axis.title.x = element_text(margin = margin(t = 20)),
+axis.title.y = element_text(margin = margin(r = 20))
+)
+bondpriceplot <- ggplot(CumBonds, aes(Date, PX_Mid)) +
+geom_line() +
+labs(color = NULL, linetype = NULL, size = NULL) +
+theme_classic() +
+theme(legend.position = "bottom") +
+ylab("Bond prices") +
+theme(
+legend.position = "bottom",
+legend.direction = "vertical",
+legend.box.margin = margin(t = 10),
+axis.title.x = element_text(margin = margin(t = 20)),
+axis.title.y = element_text(margin = margin(r = 20))
+)
+View(bondpriceplot)
+bondpriceplot
+bondpriceplot <- ggplot(CumBonds, aes(Date, PX_Mid)) +
+geom_line() +
+labs(color = NULL, linetype = NULL, size = NULL) +
+theme_classic() +
+theme(legend.position = "bottom") +
+ylab("Bond prices in percentage of face value") +
+xlab("Dates") +
+theme(
+legend.position = "bottom",
+legend.direction = "vertical",
+legend.box.margin = margin(t = 10),
+axis.title.x = element_text(margin = margin(t = 20)),
+axis.title.y = element_text(margin = margin(r = 20))
+)
+Bondpriceplot
+ggplot(d, aes(Date, value, color = variable)) +
+geom_line(aes(linetype = variable, size=variable)) +
+scale_linetype_manual(values=c("solid", "solid", "solid"))+
+labs(color = NULL, linetype = NULL, size = NULL) +
+theme_classic() +
+theme(legend.position = "bottom") +
+ylab("Bond prices") +
+scale_colour_manual(values=c("red", "blue", "green")) +
+scale_size_manual(values=c(0.2, 0.2, 0.2)) +
+theme(
+legend.position = "bottom",
+legend.direction = "vertical",
+legend.box.margin = margin(t = 20),
+axis.title.x = element_text(margin = margin(t = 20)),
+axis.title.y = element_text(margin = margin(r = 20))
+)
+View(Cubonds)
+CumBonds <- CumBonds %>% mutate(Spread = PX_Ask - PX_Bid)
+View(CumBonds)
+spreadplot <- ggplot(CumBonds, aes(Date, Spread)) +
+geom_line() +
+labs(color = NULL, linetype = NULL, size = NULL) +
+theme_classic() +
+theme(legend.position = "bottom") +
+ylab("Bond bid-ask spread in bp") +
+xlab("Dates") +
+theme(
+legend.position = "bottom",
+legend.direction = "vertical",
+legend.box.margin = margin(t = 10),
+axis.title.x = element_text(margin = margin(t = 20)),
+axis.title.y = element_text(margin = margin(r = 20))
+)
+View(spreadplot)
+spreadplot
+CumBonds <- CumBonds %>% mutate(Spread = (PX_Ask - PX_Bid)*100)
+spreadplot <- ggplot(CumBonds, aes(Date, Spread)) +
+geom_line() +
+labs(color = NULL, linetype = NULL, size = NULL) +
+theme_classic() +
+theme(legend.position = "bottom") +
+ylab("Bond bid-ask spread in bp") +
+xlab("Dates") +
+theme(
+legend.position = "bottom",
+legend.direction = "vertical",
+legend.box.margin = margin(t = 10),
+axis.title.x = element_text(margin = margin(t = 20)),
+axis.title.y = element_text(margin = margin(r = 20))
+)
+spreadplot
+
+
+
